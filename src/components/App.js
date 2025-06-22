@@ -1,4 +1,4 @@
-
+import 'regenerator-runtime/runtime';
 import React, { useEffect, useState } from "react";
 import './../styles/App.css';
 
@@ -10,7 +10,7 @@ const App = () => {
 
   async function fetchData() {
 
-    let response = await fetch("	https://reqres.in/api/users", {
+    let response = await fetch("https://reqres.in/api/users", {
       method: "GET",
       headers: {
         "x-api-key": "reqres-free-v1"
@@ -57,8 +57,8 @@ const App = () => {
 
             {flag ?
 
-              data && data.map((v) => {
-                return <tr style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", border: "2px solid black" }} >
+              data && data.map((v,i) => {
+                return <tr key={i} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", border: "2px solid black" }} >
                   <td>{v.first_name}</td>
                   <td>{v.last_name}</td>
                   <td>{v.email}</td>
@@ -67,7 +67,7 @@ const App = () => {
               })
 
               :
-              <h2 style={{textAlign:"center"}}>NO DATA FOUND</h2>
+              <h2 style={{textAlign:"center"}}>No data found</h2>
             }
 
 
