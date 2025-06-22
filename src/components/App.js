@@ -26,8 +26,10 @@ const App = () => {
 
 
   useEffect(() => {
+if(flag){
+  fetchData()
 
-    fetchData()
+}
 
 
   }, [flag])
@@ -43,10 +45,10 @@ const App = () => {
         }} style={{ height: "30px", backgroundColor: "goldenrod", border: "none" }}>Get User list</button>
       </div>
       <div style={{ width: "100%" }}>
-        <table style={{ display: "flex", justifyContent: "space-between", width: "100%", flexDirection: "column", alignItems: "center" }}>
-          <thead style={{ width: "100%", display: "flex", justifyContent: "space-between", }}  >
+        <table  style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
 
-            <tr style={{ backgroundColor: "black", color: "white", width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", border: "2px solid black" }}  >
+            <tr  style={{ backgroundColor: "black", color: "white", border: "2px solid black" }}  >
               <th>Name</th>
               <th>LastName</th>
               <th>Email</th>
@@ -58,20 +60,23 @@ const App = () => {
             {flag ?
 
               data && data.map((v,i) => {
-                return <tr key={i} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", border: "2px solid black" }} >
+                return <tr key={i} style={{ border: "1px solid black", textAlign: "center" }}>
                   <td>{v.first_name}</td>
                   <td>{v.last_name}</td>
                   <td>{v.email}</td>
-                  <td><img src={v.avatar} /></td>
+                  <td><img src={v.avatar} width="50" /></td>
                 </tr>
               })
-
+              
               :
-              <h2 style={{textAlign:"center"}}>No data found</h2>
-            }
+              (
+                <tr>
+                  <td colSpan="4" style={{ textAlign: "center" }}>No data found</td>
+                </tr>
+              )}
 
+            </tbody>
 
-          </tbody>
         </table>
       </div>
     </div>
